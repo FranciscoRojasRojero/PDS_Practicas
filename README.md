@@ -2,9 +2,10 @@
 
 ## Integrantes del equipo
 
+- **Carlos Arturo Alvarado Alvarado**
 - **Joel Alejandro Escareño Fernández**
 - **Francisco Rojas Rojero**
-- **Carlos Arturo Alvarado Alvarado**
+
 
 ## Indicaciones
 
