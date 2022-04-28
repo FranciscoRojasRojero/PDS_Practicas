@@ -93,8 +93,9 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC1_Init();
   MX_USART1_UART_Init();
-  /* USER CODE BEGIN 2 */
+  /* USER CODE BEGIN 2 */	// Inicialización de variables
   float y = 0, voltaje = 0, alpha = 0.3, y_n=0, cont=1, suma=0;
+  char msg[10];
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -105,22 +106,22 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	HAL_ADC_Start(&hadc1);								//Inicializa el ADC
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);			//Apaga el LED
-	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
-	raw = HAL_ADC_GetValue(&hadc1);						//Recepción de señal por ADC
-	voltaje = ((float)raw)/4095 * 3.3;					//Cambio a señal digital para resolución de 12 bits
+	HAL_ADC_Start(&hadc1);						// Inicializa el ADC
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);			// Apaga el LED
+	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);		// Realiza la conversión
+	raw = HAL_ADC_GetValue(&hadc1);					// Almacenamiento de valor obtenido por ADC
+	voltaje = ((float)raw)/4095 * 3.3;				//Cambio a señal digital para resolución de 12 bits
 
-	y = (alpha * voltaje) + (1-alpha)* y_n; //Filtro EMA
+	y = (alpha * voltaje) + (1-alpha)* y_n; 			//Filtro EMA
 
 
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);			//Prende el LED
-	sprintf(msg,"%.3f,",voltaje); 						//Separa una señal de otra
-	HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);				// Prende el LED
+	sprintf(msg,"%.3f,",voltaje); 						// Separa una señal de otra
+	HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);  // Transmite por UART valor de voltaje obtenido
 	sprintf(msg,"%.3f\r\n",y);
-	HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
-  y_n = y;
-	HAL_Delay(500);
+	HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);  // Transmite por UART valor de voltaje filtrado
+ 	y_n = y;								// Almacena valor anterior de y
+	HAL_Delay(500);								// Retardo de 500 ms
   }
   /* USER CODE END 3 */
 }
