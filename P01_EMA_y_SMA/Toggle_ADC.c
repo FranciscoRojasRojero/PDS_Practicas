@@ -109,18 +109,20 @@ int main(void)
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);					// Apaga el LED
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);					// Prende el LED
   */
-   // 2. ADC 12 bits / 6 bits
-	  	  HAL_ADC_Start(&hadc1);									// Inicializa el ADC
+   /* 2. ADC 12 bits - 6 bits / Toggle
+	  	  HAL_ADC_Start(&hadc1);							// Inicializa el ADC
 	  	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);					// Apaga el LED
-	 	  HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);			// Realiza la conversión
-	 	  raw = HAL_ADC_GetValue(&hadc1);							// Almacenamiento de valor de señal obtenido por ADC
+	 	  HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);				// Realiza la conversión
+	 	  raw = HAL_ADC_GetValue(&hadc1);						// Almacenamiento de valor de señal obtenido por ADC
 	 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);					// Prende el LED
-	 	  HAL_Delay(5);												// Retraso de 5 ms
+	 	  HAL_Delay(5);									// Retraso de 5 ms
 	 	  sprintf(msg, "%hu\r\n", raw);
 	 	  HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);	// Transmite por UART valor obtenido por ADC
-	 	  HAL_Delay(5);												// Retraso de 5 ms
+	 	  HAL_Delay(5);									// Retraso de 5 ms
+  */
 
 	   }
+  // 2. ADC 12 bits - 6 bits / Toggle / Filtro
 
 
   }
