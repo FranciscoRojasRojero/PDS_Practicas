@@ -93,7 +93,7 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC1_Init();
   MX_USART1_UART_Init();
-  /* USER CODE BEGIN 2 */
+  /* USER CODE BEGIN 2 */	// Inicialización de variables
   float y = 0, voltaje = 0, cont=1, suma=0;
   /* USER CODE END 2 */
 
