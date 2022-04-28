@@ -105,14 +105,14 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	HAL_ADC_Start(&hadc1);							// Inicializa el ADC
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);				// Apaga el LED
-	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);			// Realiza la conversión
-	raw = HAL_ADC_GetValue(&hadc1);						// Recepción de señal por ADC
-	voltaje = ((float)raw)/4095 * 3.3;					// Obtención de valor de voltaje para señal digital obtenida con resolución de 12 bits
+	HAL_ADC_Start(&hadc1);						// Inicializa el ADC
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);			// Apaga el LED
+	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);		// Realiza la conversión
+	raw = HAL_ADC_GetValue(&hadc1);					// Recepción de señal por ADC
+	voltaje = ((float)raw)/4095 * 3.3;				// Obtención de valor de voltaje para señal digital obtenida con resolución de 12 bits
 
-	y = (voltaje + suma) / cont; 						// Aplicación de Filtro SMA
-	suma += voltaje;							// Acumulador de señal recibida
+	y = (voltaje + suma) / cont; 					// Aplicación de Filtro SMA
+	suma += voltaje;						// Acumulador de señal recibida
 
 
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);				// Prende el LED
