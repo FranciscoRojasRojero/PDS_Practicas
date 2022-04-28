@@ -69,8 +69,8 @@ static void MX_USART1_UART_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	float y = 0, voltaje = 0, alpha = 0.3, y_n=0;
 	uint16_t raw;
-	char msg[10];
 
   /* USER CODE END 1 */
 
