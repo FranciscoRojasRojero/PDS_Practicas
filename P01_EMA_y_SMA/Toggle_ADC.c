@@ -122,8 +122,15 @@ int main(void)
   */
 
 	   }
-  // 2. ADC 12 bits - 6 bits / Toggle / Filtro
-
+  // 3. ADC 12 bits - 6 bits / Toggle / Filtro
+	HAL_ADC_Start(&hadc1);						// Inicializa el ADC
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);			// Apaga el LED
+	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);		// Realiza la conversión
+	raw = HAL_ADC_GetValue(&hadc1);					// Almacenamiento de valor obtenido por ADC
+	voltaje = ((float)raw)/4095 * 3.3;				//Cambio a señal digital para resolución de 12 bits
+	y = (alpha * voltaje) + (1-alpha)* y_n; 			//Filtro EMA
+	y_n = y;								// Almacena valor anterior de y	
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);				// Prende el LED
 
   }
 
