@@ -95,7 +95,6 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */	// Inicialización de variables
   float y = 0, voltaje = 0, alpha = 0.3, y_n=0, cont=1, suma=0;
-  char msg[10];
   /* USER CODE END 2 */
 
   /* Infinite loop */
