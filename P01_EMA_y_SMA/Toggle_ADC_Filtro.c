@@ -121,7 +121,7 @@ int main(void)
 	 	  HAL_Delay(5);									// Retraso de 5 ms
   */
 
-	   }
+	   
   // 3. ADC 12 bits - 6 bits / Toggle / Filtro
 	HAL_ADC_Start(&hadc1);						// Inicializa el ADC
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);			// Apaga el LED
@@ -132,6 +132,7 @@ int main(void)
 	y_n = y;								// Almacena valor anterior de y	
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);				// Prende el LED
 
+  	}
   }
 
   /* USER CODE END 3 */
